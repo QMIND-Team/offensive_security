@@ -18,13 +18,14 @@ def pass_comparison(subset, collisions):
 if __name__ == "__main__":
     
 
-    collisions = Value('i',0)
+    collisions = Value('i',0) #Shared value for multiprocess
     
     passlist = open("TestSet.txt","r").readlines()
     passlistlen = 0
     for line in open("TestSet.txt","r"):
         passlistlen = passlistlen + 1
-        
+
+    #splitting text file for each core
     pList1 = passlist[:int(passlistlen/6)]
     pList2 = passlist[int(passlistlen/6)+1:int(passlistlen/6)*2]
     pList3 = passlist[int(passlistlen/6)*2+1:int(passlistlen/6)*3]
