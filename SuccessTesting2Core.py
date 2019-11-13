@@ -2,8 +2,14 @@
 
 #NOTE THAT THIS CODE IS FOR 2 CORES
 
+import sys
 from multiprocessing import Process, Value
 
+try:
+    open(sys.argv[1], "r").readlines()
+    open(sys.argv[2], "r").readlines()
+except: 
+    sys.exit("(ERROR) Execute with file parameters \"SuccessTesting2Core.py (TestSet).txt (NeuralSet.txt)")
 # Description of the process that will be multithreaded
 def pass_comparison(subset, collisions):
     outfile = open("Successful.txt","a+")

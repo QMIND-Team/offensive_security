@@ -2,12 +2,20 @@
 
 #NOTE THAT THIS CODE IS FOR 6 CORES
 
+import sys
 from multiprocessing import Process, Value
+
+try:
+    open(sys.argv[1], "r").readlines()
+    open(sys.argv[2], "r").readlines()
+except: 
+    sys.exit("(ERROR) Execute with file parameters \"SuccessTesting6Core.py (TestSet).txt (NeuralSet.txt)")
+    
 
 # Description of the process that will be multithreaded
 def pass_comparison(subset, collisions):
     outfile = open("Successful.txt","a+")
-    for line in open("Neural.txt", "r"):
+    for line in open(sys.argv[2], "r"):
         try:
             if line in subset:
                 outfile.write(line)
@@ -16,13 +24,12 @@ def pass_comparison(subset, collisions):
             print("file has improper encoding or characters that are not in utf8 form and connot be compared")
 
 if __name__ == "__main__":
-    
 
     collisions = Value('i',0) #Shared value for multiprocess
     
-    passlist = open("TestSet.txt","r").readlines()
+    passlist = open(sys.argv[1],"r").readlines()
     passlistlen = 0
-    for line in open("TestSet.txt","r"):
+    for line in open(sys.argv[1],"r"):
         passlistlen = passlistlen + 1
 
     #splitting text file for each core
