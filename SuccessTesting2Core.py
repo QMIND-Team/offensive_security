@@ -13,7 +13,7 @@ except:
 # Description of the process that will be multithreaded
 def pass_comparison(subset, collisions):
     outfile = open("Successful.txt","a+")
-    for line in open("Neural.txt", "r"):
+    for line in open(sys.argv[2], "r"):
         try:
             if line in subset:
                 outfile.write(line)
@@ -25,10 +25,14 @@ if __name__ == "__main__":
     
 
     collisions = Value('i',0) #Shared value for multiprocess
+
+    neurallen = 0
+    for line in open(sys.argv[2],"r"):
+        neurallen = neurallen+1
     
-    passlist = open("TestSet.txt","r").readlines()
+    passlist = open(sys.argv[1],"r").readlines()
     passlistlen = 0
-    for line in open("TestSet.txt","r"):
+    for line in open(sys.argv[1],"r"):
         passlistlen = passlistlen + 1
 
     #splitting text file for each core
@@ -47,5 +51,7 @@ if __name__ == "__main__":
     print("Number of successful attempts: " + str(collisions.value))
     print("Number of passwords not cracked: " + str(passlistlen - collisions.value))
     print("Success rate: " + str(collisions.value/passlistlen*100) + "%")
+    print("Neural Net Efficiency (Percentage of passwords cracked vs the length of the generated list): " + str((collisions.value/neurallen)*100)+"%")
+
 
     x=input("Press enter to close ...")
