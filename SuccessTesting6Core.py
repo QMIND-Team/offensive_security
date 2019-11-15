@@ -27,6 +27,10 @@ if __name__ == "__main__":
 
     collisions = Value('i',0) #Shared value for multiprocess
     
+    neuralLen = 0
+    for line in open(sys.argv[2], "r"):
+    neuralLen = neuralLen + 1
+    
     passlist = open(sys.argv[1],"r").readlines()
     passlistlen = 0
     for line in open(sys.argv[1],"r"):
@@ -63,6 +67,7 @@ if __name__ == "__main__":
     
     print("Number of successful attempts: " + str(collisions.value))
     print("Number of passwords not cracked: " + str(passlistlen - collisions.value))
-    print("Success rate: " + str(collisions.value/passlistlen*100) + "%")
+    print("Success rate (Percentage of passwords cracked): " + str(collisions.value/passlistlen*100) + "%")
+    print("Neural set efficiency (Number of working passwords vs set length): " + str(collisions.value/neuralLen*100)+"%")
 
     x=input("Press enter to close ...")
