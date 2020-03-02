@@ -40,6 +40,11 @@ Import the file:
 `modelObject.generateTextFile(outputLength)`
 
  - Create a file with 'outputLength' number of passwords
+ 
+## Visualizing Probability
+ - Run `model.make_name(display)`
+ - Pass in display as 1 and it will generate each character while printing a new graph
+
 
 ## How to add new data
 Prepare the new data: `addedFile = open('fileName.txt','r').readlines()`
