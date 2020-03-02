@@ -5,6 +5,7 @@ Created on Wed Feb 12 19:10:37 2020
 @author: lewis
 """
 from Model import Model
+from Testing import Testing
 
 epochLimit = 30
 epochLimit2 = 50
@@ -22,6 +23,6 @@ model1.prepTrainingSet(addedFile) # Reprocess data with added file
 
 model1.continueTraining(epochLimit2) # Continue training with new epoch limit
 
-model1.generateTextFile(100) # generate a text file of given limit
+testObj = Testing()
 
 

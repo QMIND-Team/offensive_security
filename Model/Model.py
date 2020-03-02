@@ -18,10 +18,6 @@ class Model:
         self.passes = open(fileName, 'r').readlines()  # Used as temporary storage for the file so that line endings can be removed
         
     def prepTrainingSet(self, addedText = []):
-        """
-        
-        
-        """
         for i in addedText:
             self.passes.append(i)
         
