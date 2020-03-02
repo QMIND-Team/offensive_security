@@ -55,6 +55,17 @@ Reprocess the data: `modelObject.prepTrainingSet(addedFile)`
 
 Resume Training: `modelObject.continueTraining(epochLimit)`
 
+## How to load a model
+First, include the library from keras: `from keras.models import load_model`
+
+Create a new model object `modelObject = Model('ModelName', 'textFile')`
+ - Important Note: the text file used, MUST be the same as the one that trained the model
+
+Compile the model `model1.buildModel`
+ - No parameters need to be passed in, but if it is causing issues use buildModel(0,1) instead
+ 
+Load the model `modelObject.model = load_model("modelName.h5")`
+
 ## Known Issues
 
  - Some text files causes issues if they have characters outside the range of ascii 33-126 (! to ~)
