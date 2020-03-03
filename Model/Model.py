@@ -21,7 +21,7 @@ class Model:
         for i in addedText:
             self.passes.append(i)
         
-        print(len(self.passes))
+        #print(len(self.passes))
         
         self.full_list = [0]*len(self.passes) #creating a new list for stripped passwords
         
