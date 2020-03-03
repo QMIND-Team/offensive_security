@@ -5,24 +5,22 @@ Created on Wed Feb 12 19:10:37 2020
 @author: lewis
 """
 from Model import Model
-from Testing import Testing
+from keras.models import load_model
 
-epochLimit = 30
-epochLimit2 = 50
-addedFile = open('5k.txt','r').readlines()
+epochLimit = 300
 
-model1 = Model("TestModel", "5k2.txt") # Initialize model object with a name and a training set
+ProbabilityDemo = 0
 
-model1.prepTrainingSet() # Perform preprocessing to data
+##DEMO
+model1 = Model("loadModel", "RandPass.txt")
+model1.buildModel(0,1)
+model1.model = load_model("TestModel.h5")
 
-model1.buildModel(epochLimit) # Build the model, Include limit 
+if (ProbabilityDemo):
+    model1.make_name(1)
 
-model1.model.save(model1.name+'.h5') # Save the model so that new data can be added
+else:
+    model1.generateTextFile(100)
 
-model1.prepTrainingSet(addedFile) # Reprocess data with added file
-
-model1.continueTraining(epochLimit2) # Continue training with new epoch limit
-
-testObj = Testing()
 
 
