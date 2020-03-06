@@ -28,9 +28,9 @@ class Model:
         self.char_dim = len(Model.char_to_index)
         
     def prepTrainingSet(self, addedText = []):
-
-        for i in addedText:
-            self.passes.append(i)
+        if(addedText==[]):
+            for i in addedText:
+                self.passes.append(i)
         
         print(len(self.passes))
         
@@ -71,13 +71,13 @@ class Model:
             self.model.compile(loss='categorical_crossentropy', optimizer='adam')
             self.name_generator = LambdaCallback(on_epoch_end = self.generate_name_loop)
             
-            self.model.fit(self.X, self.Y, batch_size=512, epochs=epochLimit, callbacks=[self.name_generator], verbose=0)
+            self.model.fit(self.X, self.Y, batch_size=256, epochs=epochLimit, callbacks=[self.name_generator], verbose=0)
             
             
     def continueTraining(self, epochLimit):
         from keras.models import load_model
         self.model = load_model(self.name+'.h5')
-        self.model.fit(self.X, self.Y, batch_size=512, epochs=epochLimit, callbacks=[self.name_generator], verbose=0)
+        self.model.fit(self.X, self.Y, batch_size=256, epochs=epochLimit, callbacks=[self.name_generator], verbose=0)
 
 
     def make_name(self, display): # Create the name

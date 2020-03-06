@@ -12,15 +12,19 @@ epochLimit = 300
 ProbabilityDemo = 0
 
 ##DEMO
-model1 = Model("loadModel", "RandPass.txt")
-model1.buildModel(0,1)
-model1.model = load_model("TestModel.h5")
+model1 = Model("loadModel2", "pass.txt")
+model1.prepTrainingSet() # Perform preprocessing to data
+
+model1.buildModel(epochLimit,0) # Build the model, Include limit 
+#model1.buildModel(0,1)
+model1.model.save(model1.name+'.h5')
+#model1.model = load_model("loadModel.h5")
 
 if (ProbabilityDemo):
     model1.make_name(1)
 
 else:
-    model1.generateTextFile(100)
+    model1.generateTextFile(100000)
 
 
 
